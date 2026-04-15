@@ -9,10 +9,8 @@
 
 <section class="hero">
 	<div class="eyebrow">SvelteKit · Rick and Morty</div>
-	<h1>Arquitectura frontend lista para crecer sin mezclar UI con negocio.</h1>
-	<p>
-		Base feature-first/domain-first con contratos claros entre pantalla, dominio y API.
-	</p>
+	<h1>Alvaro Javier Torres Ruiz</h1>
+	<p>codigo : 92202</p>
 </section>
 
 <div class="panel">
