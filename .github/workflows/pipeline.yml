@@ -16,6 +16,18 @@ jobs:
       - name: Clonar repositorio
         uses: actions/checkout@v3
 
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Generar build
+        run: npm run build
+
       - name: Deploy a GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
