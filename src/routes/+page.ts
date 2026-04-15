@@ -1,22 +1,25 @@
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 import { listCharacters, type CharacterFilters } from '$lib/core/api/rick-and-morty';
 
 function readFilters(url: URL): CharacterFilters {
-	const query = url.searchParams.get('q') ?? url.searchParams.get('name') ?? '';
-	const pageParam = url.searchParams.get('page');
+	const searchParams = new URL(url.toString()).searchParams;
+	const query = searchParams.get('q') ?? searchParams.get('name') ?? '';
+	const pageParam = searchParams.get('page');
 	const page = pageParam ? Number(pageParam) : undefined;
 
 	return {
 		page: page && Number.isFinite(page) ? page : undefined,
 		name: query,
-		status: url.searchParams.get('status') ?? undefined,
-		species: url.searchParams.get('species') ?? undefined,
-		type: url.searchParams.get('type') ?? undefined,
-		gender: url.searchParams.get('gender') ?? undefined
+		status: searchParams.get('status') ?? undefined,
+		species: searchParams.get('species') ?? undefined,
+		type: searchParams.get('type') ?? undefined,
+		gender: searchParams.get('gender') ?? undefined
 	};
 }
 
-export const load: PageServerLoad = async ({ fetch, url }) => {
+export const prerender = true;
+
+export const load: PageLoad = async ({ fetch, url }) => {
 	const filters = readFilters(url);
 	const query = filters.name ?? '';
 
